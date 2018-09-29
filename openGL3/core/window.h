@@ -13,12 +13,12 @@ private:
   static  void reshape(int w, int h){
         glViewport(0, 0, w, h);
 
-        glMatrixMode(GL_PROJECTION);
+     /*   glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
         gluOrtho2D(0, w, 0, h);
 
         glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
+        glLoadIdentity();*/
     }
 
 
@@ -40,7 +40,7 @@ public:
     void create(char * name,int w,int h){
         glutInitWindowSize(w, h);
         glutCreateWindow(name);
-        gluPerspective(0, w/h, 0.0, 1000.0);
+       // gluPerspective(60, w/h, 0.0, 60.0);
     }
 
     void idle(void (* idle)(void)){

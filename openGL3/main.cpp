@@ -11,6 +11,8 @@ using namespace glm;
 #include <core/window.h>
 #include <game.h>
 
+
+static void idle();
 static void display();
 static void keyboard(unsigned char key,int mouseX,int mouseY);
 static void mouse(int button, int state, int x, int y);
@@ -23,6 +25,9 @@ int main(int argc, char *argv[])
     win.create("My window",640,480);
 
     game.init();
+
+    win.idle(idle);
+
     win.display(display);
 
     win.keyboard(keyboard);
@@ -30,6 +35,11 @@ int main(int argc, char *argv[])
 
     win.startloop();
     return 0;
+}
+
+static void idle(){
+
+    game.idle();
 }
 
 static void display(){

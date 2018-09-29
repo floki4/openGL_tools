@@ -48,7 +48,7 @@ public:
     }
 
     void readAttrs(string line){
-      vector<string> strings =  str.devide(line,' ');
+      vector<string> strings =  str.devide(line," ");
 
         for( string str:strings){
            cout<<str<<endl;
@@ -59,7 +59,7 @@ public:
 
     bool closeTag(string line){
 
-        if(str.charPos(line,'/') == 1){
+        if(str.charPos(line,"/") == 1){
             return true;
         }
         return false;
@@ -70,9 +70,9 @@ public:
         int nStart, nEnd,space;
         string res;
 
-        nStart = str.charPos(line,'<');
-        nEnd = str.charPos(line,'>');
-        space = str.charPos(line,' ');
+        nStart = str.charPos(line,"<");
+        nEnd = str.charPos(line,">");
+        space = str.charPos(line," ");
 
         //-1 = нет символа
         if(space != -1) nEnd = space;

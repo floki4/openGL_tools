@@ -28,8 +28,6 @@ private:
     Xml xml;
 
 
-    vector< vec3 > temp_vertices;
-
     Image img;
 
     int oldX,newX, oldY,newY;
@@ -43,7 +41,7 @@ public:
         img.y = 32;
         img.w = img.h = 128;*/
 
-        obj.read("models/plant.obj");
+        obj.read("models/pl.obj");
       //   obj.read("models/plant2.obj");
      //   fon.load();
 
@@ -53,59 +51,60 @@ public:
         //XML
     //    xml.read("xml/1.xml");
 
-// glEnable(GL_DEPTH_TEST);
-        glEnable(GL_COLOR_MATERIAL);
-        glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
+ glEnable(GL_DEPTH_TEST);
+     //   glEnable(GL_COLOR_MATERIAL);
+      //  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 
         //light
-        glEnable(GL_LIGHTING);
-glEnable(GL_LIGHT0);
-            // Create light components
-              float ambientLight[] = { 0.2f, 0.2f, 0.2f, 1.0f };
-             float diffuseLight[] = { 0.7f, 0.7f, 0.7, 1.0f };
-              float specularLight[] = { 0.4f, 0.4f, 0.4f, 1.0f };
-              float position[] = { -1.5f, 1.0f, -4.0f, 1.0f };
-
-              // Assign created components to GL_LIGHT0
-              glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
-              glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
-              glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);
-              glLightfv(GL_LIGHT0, GL_POSITION, position);
+   //     glEnable(GL_LIGHTING);
+//glEnable(GL_LIGHT0);
+       // glLight(GL_LIGHT0,GL_AMBIENT);
 
         glShadeModel(GL_FLAT|GL_SMOOTH);
 
-
+         //  glFrontFace(GL_CW);
+      //  glEnable(GL_CULL_FACE);
     }
+
+     void idle(){
+
+     }
 
        void render(){
    //     glClearColor(0.8, 1.0, 0.6, 1.0);
-       // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-      //  camera.show(img.x-(camera.w/2-(img.w/2)),0);
+        glMatrixMode(GL_MODELVIEW);
 
-       // fon.show(2);
+//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+glPointSize(4);
+glLineWidth(1);
+// glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 
-
-      //  img.show();
 
   glPushMatrix();
-glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
- // glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+//glTranslatef(0, 0, -2.0f);
 
-  glRotatef(30,0,1,0);
- glRotatef(-75,1,0,0);
- glRotatef(30,0,0,1);
+glRotatef(90,1,0,0);
+  glRotatef(90,0,1,0);
+ glRotatef(0,0,0,1);
 
  double scale = 0.3;
  glScaled(scale,scale,scale);
 
-glTranslatef(.1f, -.5f, .0f);
+//glTranslatef(-1.0f, -.5f, -1.0f);
 
 obj.draw();
 
+/*
+gluLookAt(0,0,0,    //eye
+          0,0,0,    //center
+          0,0,0);   //up
+*/
+
 glPopMatrix();
 
-        glFlush();
+//glFlush();
 
     }
 
