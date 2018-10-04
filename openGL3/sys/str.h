@@ -68,7 +68,6 @@ return line.substr(n,line.length()-n2);
             first = d.y;
             strings.push_back(str);
         }
-        //cout<<"---------------------"<<endl;
 
         return strings;
     }

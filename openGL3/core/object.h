@@ -40,7 +40,7 @@ public:
                 if(name == "v "){
                      vec3 vec = strToVec(line);
 
-                     cout<<str.vec3ToStr(vec)<<endl;
+                   //  cout<<str.vec3ToStr(vec)<<endl;
 
                     vertices.push_back(vec);
                 }
@@ -50,24 +50,22 @@ public:
                 cout << '\n';
             }
             myfile.close();
-            cout << "---------"<<endl;
-        }
+               }
         else cout << "Unable to open file";
     }
 
     void draw(){
         glBegin(GL_POLYGON);
 
-        glColor3f(1.0, 1.0, 0.0);
+      //  glColor3f(1.0, 1.0, 0.0);
 
         for(vec2 face:faces){
             vec3 vec = vertices[face.x-1];
 
          //   cout<<face.x<<" "<<str.vec3ToStr(vec)<<endl;
-
+               // glVertex3fv(vec);
             glVertex3d(vec.x, vec.y, vec.z);
         }
-       cout<<"----------------"<<endl;
 
         glEnd();
 
@@ -80,13 +78,18 @@ public:
         vector<string> tmpFaces = str.devide(sub," ");
 
         for(string s:tmpFaces){
+            face.x = str.toNum(s);
+              faces.push_back(face);
+        }
+
+      /*  for(string s:tmpFaces){
             vector<string> tmpFace = str.devide(s,"//");
 
             face.x = str.toNum(tmpFace[0]);
             face.y=str.toNum(tmpFace[1]);
 
             faces.push_back(face);
-        }
+        }*/
     }
 
     vec3 strToVec(string line){

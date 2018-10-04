@@ -1,32 +1,15 @@
 #ifndef GAME_H
 #define GAME_H
 
-
-#include <stdio.h>
-#include <string.h>
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <algorithm>
-
-#include <core/object.h>
-#include<core/camera.h>
-#include<core/sprite.h>
-#include<objects/fon.h>
-
-#include<sys/xml.h>
-
-
-using namespace std;
+#include<core/inc.h>
 
 class Game
 {
 private:
     Camera camera;
-    Fon fon;
+    Light light;
     Object obj;
-    Xml xml;
-
+   // Xml xml;
 
     Image img;
 
@@ -35,35 +18,16 @@ private:
 public:
     Game(){}
 
-    void init(){
-    /*    img.load("img/car.png");
-        img.x = 128;
-        img.y = 32;
-        img.w = img.h = 128;*/
 
-        obj.read("models/pl.obj");
-      //   obj.read("models/plant2.obj");
-     //   fon.load();
+    void init(){
+         obj.read("models/tree.obj");
 
         camera.size(640,480);
 
-
-        //XML
-    //    xml.read("xml/1.xml");
-
+glEnable(GL_ALPHA_TEST);
  glEnable(GL_DEPTH_TEST);
-     //   glEnable(GL_COLOR_MATERIAL);
-      //  glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 
-        //light
-   //     glEnable(GL_LIGHTING);
-//glEnable(GL_LIGHT0);
-       // glLight(GL_LIGHT0,GL_AMBIENT);
-
-        glShadeModel(GL_FLAT|GL_SMOOTH);
-
-         //  glFrontFace(GL_CW);
-      //  glEnable(GL_CULL_FACE);
+ light.init();
     }
 
      void idle(){
@@ -74,49 +38,55 @@ public:
    //     glClearColor(0.8, 1.0, 0.6, 1.0);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glMatrixMode(GL_MODELVIEW);
+        //glMatrixMode(GL_MODELVIEW);
 
 //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 glPointSize(4);
 glLineWidth(1);
 // glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 
+camera.show(0,0);
 
-  glPushMatrix();
-//glTranslatef(0, 0, -2.0f);
+  //camera.eye.x=0.3;
 
-glRotatef(90,1,0,0);
-  glRotatef(90,0,1,0);
- glRotatef(0,0,0,1);
 
- double scale = 0.3;
- glScaled(scale,scale,scale);
+Matrix matrix;
 
-//glTranslatef(-1.0f, -.5f, -1.0f);
+matrix.start();
+matrix.rotate(0,0,0);
+matrix.scale(0.3);
+//matrix.move(-1,-0.5,-1);
 
 obj.draw();
+matrix.end();
 
-/*
-gluLookAt(0,0,0,    //eye
-          0,0,0,    //center
-          0,0,0);   //up
-*/
-
-glPopMatrix();
-
-//glFlush();
-
+glFlush();
     }
 
        void mouse(int button, int state, int x, int y){
 
+           int center  = 640/2;
+          // double d = 1/(center);
+            double d = 0.0009375;
+           cout<<to_string(d)<<endl;
            switch(button){
            case GLUT_LEFT_BUTTON:
                if(state == GLUT_UP) {
-                   y = 480-y;
-                   img.x = x;
-                   img.y = y;
-                   //       cout<<"x = " << x <<" y = "<<y<<endl;
+
+                  if(x>center){ //right
+
+                 camera.eye.x=x*d-0.3;
+                   }else{  //left
+                     camera.eye.x=-0.3+(x*d);
+                   }
+                   if(x < center+50 && x > center-50 ){
+                        camera.eye.x=0;
+                   }
+
+                    glutSwapBuffers();
+
+                    cout<<"x = " << x <<" y = "<<y<<endl;
+                   camera.eye.print();
                }
 
                break;

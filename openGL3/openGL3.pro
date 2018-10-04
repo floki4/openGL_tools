@@ -7,7 +7,7 @@ SOURCES += main.cpp
 
 INCLUDEPATH += -L/usr/include
 
-LIBS += -L/usr/lib/i386-linux-gnu -lGL -lglfw -lGLEW -lglut -lGLU
+LIBS += -L/usr/lib/i386-linux-gnu -lGL -lGLEW -lglut -lGLU
 
 LIBS += -L/usr/lib -lSOIL
 
@@ -22,7 +22,12 @@ HEADERS += \
     sys/xml.h \
     sys/str.h \
     sys/xml/node.h \
-    sys/fileworker.h
+    sys/fileworker.h \
+    primitives/point.h \
+    primitives/peretvorenia.h \
+    core/inc.h \
+    core/light.h \
+    core/matrix.h
 
 
 DISTFILES +=

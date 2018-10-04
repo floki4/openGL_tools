@@ -1,7 +1,4 @@
 #include <iostream>
-
-//include openGL
-
 #include <GL/glew.h>
 
 
@@ -48,9 +45,9 @@ static void display(){
     game.render();
 
       glutSwapBuffers();
-   //   glFlush();
- //    glutPostRedisplay();
+     glutPostRedisplay();
 }
+
 
 
 static void keyboard(unsigned char key,int mouseX,int mouseY){
