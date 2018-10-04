@@ -3,7 +3,7 @@
 
 #include<core/inc.h>
 
-#include<fbxsdk.h>
+#include<export/fbxexporter.h>
 
 class Game
 {
@@ -11,6 +11,8 @@ private:
     Camera camera;
     Light light;
     ObjExporter obj;
+
+    FBXExporter fbx;
 
    // Xml xml;
 
@@ -31,6 +33,8 @@ glEnable(GL_ALPHA_TEST);
  glEnable(GL_DEPTH_TEST);
 
  light.init();
+
+ fbx.load("models/flacon.fbx");
 
     }
 
