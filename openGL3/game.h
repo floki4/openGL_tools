@@ -3,12 +3,14 @@
 
 #include<core/inc.h>
 
+#include<fbxsdk.h>
+
 class Game
 {
 private:
     Camera camera;
     Light light;
-    Object obj;
+    ObjExporter obj;
    // Xml xml;
 
     Image img;
@@ -20,7 +22,7 @@ public:
 
 
     void init(){
-         obj.read("models/tree.obj");
+         obj.read("models/proba.obj");
 
         camera.size(640,480);
 
@@ -43,25 +45,28 @@ glEnable(GL_ALPHA_TEST);
 //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 glPointSize(4);
 glLineWidth(1);
-// glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+ //glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 
 camera.show(0,0);
 
   //camera.eye.x=0.3;
 
-
 Matrix matrix;
 
+double ry=0;
+ry+=0.2;
+
 matrix.start();
-matrix.rotate(0,0,0);
+matrix.rotate(ry,ry,0);
 matrix.scale(0.3);
 //matrix.move(-1,-0.5,-1);
 
-obj.draw();
+//obj.draw();
 matrix.end();
 
-glFlush();
     }
+
+
 
        void mouse(int button, int state, int x, int y){
 

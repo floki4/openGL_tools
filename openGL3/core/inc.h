@@ -9,7 +9,7 @@
 #include <algorithm>
 
 
-#include <core/object.h>
+#include <core/objexporter.h>
 #include<core/camera.h>
 #include<core/sprite.h>
 #include<core/light.h>

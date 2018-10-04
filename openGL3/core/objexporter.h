@@ -12,7 +12,7 @@ using namespace std;
 
 //f перше число - індекс вершини | друге число - (напевно кількість її дублів).
 
-class Object
+class ObjExporter
 {
 
 
@@ -25,7 +25,7 @@ private:
     vector< vec2 > faces;
 
 public:
-    Object(){}
+    ObjExporter(){}
 
     void read(string path){
         string line;

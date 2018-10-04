@@ -6,15 +6,17 @@ CONFIG -= qt
 SOURCES += main.cpp
 
 INCLUDEPATH += -L/usr/include
+#INCLUDEPATH += -L/usr/include/fbx/
 
 LIBS += -L/usr/lib/i386-linux-gnu -lGL -lGLEW -lglut -lGLU
+
+#LIBS += -L/usr/lib/i386-linux-gnu/fbx/libfbxsdk.a
 
 LIBS += -L/usr/lib -lSOIL
 
 HEADERS += \
     game.h \
     core/window.h \
-    core/object.h \
     core/image.h \
     core/sprite.h \
     objects/fon.h \
@@ -27,7 +29,18 @@ HEADERS += \
     primitives/peretvorenia.h \
     core/inc.h \
     core/light.h \
-    core/matrix.h
+    core/matrix.h \
+    primitives/triangles.h \
+    export/objexporter.h \
+    export/fbxexporter.h \
+    primitives/object.h
 
 
 DISTFILES +=
+
+unix:!macx: LIBS += -L$$PWD/../../../../../../usr/lib/i386-linux-gnu/fbx/ -lfbxsdk
+
+INCLUDEPATH += $$PWD/../../../../../../usr/include/i386-linux-gnu/fbx
+DEPENDPATH += $$PWD/../../../../../../usr/include/i386-linux-gnu/fbx
+
+unix:!macx: PRE_TARGETDEPS += $$PWD/../../../../../../usr/lib/i386-linux-gnu/fbx/libfbxsdk.a

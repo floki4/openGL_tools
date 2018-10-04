@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = -DQT_QML_DEBUG
 CFLAGS        = -pipe -g -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=c++0x -Wall -W -fPIC $(DEFINES)
-INCPATH       = -I../openGL3 -I. -I-L/usr/include -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++
+INCPATH       = -I../openGL3 -I. -I-L/usr/include -isystem /usr/include/i386-linux-gnu/fbx -I/usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++
 QMAKE         = /usr/lib/i386-linux-gnu/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -36,7 +36,7 @@ DISTNAME      = openGL31.0.0
 DISTDIR = /home/victor/Документи/source/openGL_tools/debug/.tmp/openGL31.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS) -L/usr/lib/i386-linux-gnu -lGL -lGLEW -lglut -lGLU -L/usr/lib -lSOIL 
+LIBS          = $(SUBLIBS) -L/usr/lib/i386-linux-gnu -lGL -lGLEW -lglut -lGLU -L/usr/lib -lSOIL -L/home/victor/Документи/source/openGL_tools/openGL3/../../../../../../usr/lib/i386-linux-gnu/fbx/ -lfbxsdk 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -131,7 +131,6 @@ DIST          = /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/i386-linux-gnu/qt5/mkspecs/features/lex.prf \
 		../openGL3/openGL3.pro game.h \
 		core/window.h \
-		core/object.h \
 		core/image.h \
 		core/sprite.h \
 		objects/fon.h \
@@ -144,7 +143,11 @@ DIST          = /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		primitives/peretvorenia.h \
 		core/inc.h \
 		core/light.h \
-		core/matrix.h ../openGL3/main.cpp
+		core/matrix.h \
+		primitives/triangles.h \
+		export/objexporter.h \
+		export/fbxexporter.h \
+		primitives/object.h ../openGL3/main.cpp
 QMAKE_TARGET  = openGL3
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = openGL3
@@ -172,7 +175,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET):  $(OBJECTS)  
+$(TARGET): /home/victor/Документи/source/openGL_tools/openGL3/../../../../../../usr/lib/i386-linux-gnu/fbx/libfbxsdk.a $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../openGL3/openGL3.pro /usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -379,7 +382,7 @@ compiler_clean:
 main.o: ../openGL3/main.cpp ../openGL3/core/window.h \
 		../openGL3/game.h \
 		../openGL3/core/inc.h \
-		../openGL3/core/object.h \
+		../openGL3/core/objexporter.h \
 		../openGL3/sys/str.h \
 		../openGL3/core/camera.h \
 		../openGL3/primitives/point.h \
