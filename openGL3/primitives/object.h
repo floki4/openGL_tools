@@ -7,8 +7,8 @@ class Object
 public:
     Object(){}
 
-   virtual void init();
-    virtual void draw();
+   virtual void init(){}
+    virtual void draw(){}
 
 };
 

@@ -11,6 +11,7 @@ private:
     Camera camera;
     Light light;
     ObjExporter obj;
+
    // Xml xml;
 
     Image img;
@@ -30,6 +31,7 @@ glEnable(GL_ALPHA_TEST);
  glEnable(GL_DEPTH_TEST);
 
  light.init();
+
     }
 
      void idle(){
@@ -52,12 +54,8 @@ camera.show(0,0);
   //camera.eye.x=0.3;
 
 Matrix matrix;
-
-double ry=0;
-ry+=0.2;
-
 matrix.start();
-matrix.rotate(ry,ry,0);
+matrix.rotate(0,0,0);
 matrix.scale(0.3);
 //matrix.move(-1,-0.5,-1);
 

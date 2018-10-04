@@ -144,10 +144,9 @@ DIST          = /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		core/inc.h \
 		core/light.h \
 		core/matrix.h \
-		primitives/triangles.h \
 		export/objexporter.h \
 		export/fbxexporter.h \
-		primitives/object.h ../openGL3/main.cpp
+		core/aobject.h ../openGL3/main.cpp
 QMAKE_TARGET  = openGL3
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = openGL3
@@ -390,6 +389,8 @@ main.o: ../openGL3/main.cpp ../openGL3/core/window.h \
 		../openGL3/core/image.h \
 		../openGL3/core/light.h \
 		../openGL3/core/matrix.h \
+		../openGL3/primitives/triangles.h \
+		../openGL3/core/aobject.h \
 		../openGL3/sys/xml.h \
 		../openGL3/sys/fileworker.h \
 		../openGL3/sys/xml/node.h

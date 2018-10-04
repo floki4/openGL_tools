@@ -30,10 +30,9 @@ HEADERS += \
     core/inc.h \
     core/light.h \
     core/matrix.h \
-    primitives/triangles.h \
     export/objexporter.h \
     export/fbxexporter.h \
-    primitives/object.h
+    core/aobject.h
 
 
 DISTFILES +=
