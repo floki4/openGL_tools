@@ -42,4 +42,4 @@ unix:!macx: LIBS += -L$$PWD/../../../../../../usr/lib/i386-linux-gnu/fbx/ -lfbxs
 INCLUDEPATH += $$PWD/../../../../../../usr/include/i386-linux-gnu/fbx
 DEPENDPATH += $$PWD/../../../../../../usr/include/i386-linux-gnu/fbx
 
-unix:!macx: PRE_TARGETDEPS += $$PWD/../../../../../../usr/lib/i386-linux-gnu/fbx/libfbxsdk.a
+unix:!macx: PRE_TARGETDEPS += $$PWD/../../../../../../usr/lib/i386-linux-gnu/fbx/libfbxsdk.so

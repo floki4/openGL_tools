@@ -22,7 +22,7 @@ private:
             dev.x= charPosAfter(line,chr,dev.x+1);
             dev.y= dev.x+chr.length();
 
-              //end line
+            //end line
             if(dev.x != -1){
                 dividers.push_back(dev);
             }
@@ -42,11 +42,11 @@ public:
     }
 
     string sub(int n,string line){
-return line.substr(n,line.length());
+        return line.substr(n,line.length());
     }
 
     string sub(int n,int n2,string line){
-return line.substr(n,line.length()-n2);
+        return line.substr(n,line.length()-n2);
     }
 
     int charPos(string line,string chr){
@@ -73,12 +73,38 @@ return line.substr(n,line.length()-n2);
     }
 
     float toNum(string line){
-    return  atof(line.c_str());
+        return  atof(line.c_str());
     }
 
     string vec3ToStr(vec3 vec){
         string st(""+to_string(vec.x)+" "+to_string(vec.y)+" "+to_string(vec.z));
-    return st;
+        return st;
+    }
+
+
+    void print(string txt){
+        cout<<txt<<endl;
+    }
+
+    void print(double n){
+        cout<<to_string(n)<<endl;
+    }
+
+    void print(int n){
+        cout<<to_string(n)<<endl;
+    }
+
+    void print(vec3 vec){
+        cout<<to_string(vec.x)<<" "<<
+              to_string(vec.y)<<" "<<
+              to_string(vec.z)<<" "<<
+              endl;
+    }
+
+    void print(int kupa[]){
+        for(int i = 0;i<sizeof(kupa);i++){
+            cout<<to_string(kupa[i])<<endl;
+        }
     }
 
 

@@ -174,7 +174,7 @@ first: all
 
 ####### Build rules
 
-$(TARGET): /home/victor/Документи/source/openGL_tools/openGL3/../../../../../../usr/lib/i386-linux-gnu/fbx/libfbxsdk.a $(OBJECTS)  
+$(TARGET): /home/victor/Документи/source/openGL_tools/openGL3/../../../../../../usr/lib/i386-linux-gnu/fbx/libfbxsdk.so $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: ../openGL3/openGL3.pro /usr/lib/i386-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -393,7 +393,9 @@ main.o: ../openGL3/main.cpp ../openGL3/core/window.h \
 		../openGL3/core/aobject.h \
 		../openGL3/sys/xml.h \
 		../openGL3/sys/fileworker.h \
-		../openGL3/sys/xml/node.h
+		../openGL3/sys/xml/node.h \
+		../openGL3/export/fbxexporter.h \
+		../openGL3/core/str.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../openGL3/main.cpp
 
 ####### Install
