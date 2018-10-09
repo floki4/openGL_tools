@@ -37,6 +37,14 @@ public:
               endl;
     }
 
+    void vec(vec4 vec){
+        cout<<to_string(vec[0])<<" "<<
+              to_string(vec[1])<<" "<<
+              to_string(vec[2])<<" "<<
+              to_string(vec[3])<<" "<<
+              endl;
+    }
+
     void arr(int kupa[]){
         for(int i = 0;i<sizeof(kupa);i++){
             cout<<to_string(kupa[i])<<endl;

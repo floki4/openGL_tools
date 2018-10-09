@@ -36,11 +36,11 @@ public:
     }
 
     void show(int x,int y){
-      //  glPushMatrix();
+        glPushMatrix();
      // glOrtho(-(w/2),w/2,-(h/2),h/2,1,1);
 
-        glMatrixMode(GL_PROJECTION);  // To operate on the Projection matrix
-          glLoadIdentity();             // Reset
+        glMatrixMode(GL_PROJECTION);
+          glLoadIdentity();
 
           gluPerspective(kut, aspect, zNear, zFar);
 
@@ -48,8 +48,7 @@ public:
                   center.x, center.y,center.z,
                   up.x, up.y,up.z);
 
-        //   glMatrixMode(GL_MODELVIEW);
-      //  glPopMatrix();
+       glPopMatrix();
     }
 };
 

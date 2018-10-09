@@ -51,7 +51,7 @@ static void display(){
 
       //glFlush();
       glutSwapBuffers();
-  //   glutPostRedisplay();
+     glutPostRedisplay();
 }
 
 
