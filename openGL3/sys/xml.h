@@ -5,85 +5,103 @@
 
 #include<sys/fileworker.h>
 #include<sys/str.h>
-#include<sys/xml/node.h>
+#include<sys/print.h>
+#include<sys/xml/circle.h>
 
-class Xml : public FileWorker
+class Xml
 {
 private:
 
-    //  FileWorker fWorker;
+    FileWorker fworker;
     Str str;
 
-    vector<Node> nodes;
+
+    vector<Circle> circles;
 
     string path;
+    vector<string> stroku;
+
+    Print _p;
 
 public:
     Xml(){}
 
     //TODO Якщо файл змінився, треба перезавантажити дані. (перевіряти зміну раз в 3 сек.)
 
-    /*  void load(char * path){
-        fWorker.read(path);
-    }*/
+    void read(char * path){
+        stroku = fworker.read(path);
+
+        for(string s:stroku){
+            processing(s);
+        }
+    }
 
     //Сформувати список нодів
     void processing(string line){
         //Чи пустий рядок
 
-        if(line.size() >0 && !closeTag(line)){
+        if(line.size() >0){
             //Побудова нода
-            Node node;
+            Circle circle;
             //Знаходимо дані нода
 
             //Назва тега
-                 node.name = tagName(line);
-                 //Атрибути
-                  readAttrs(line);
+            circle.name = circleName(line);
+            //Атрибути
+           circle = readAttrs(line,circle);
+      _p.arr(circle.attr);
 
-                 nodes.push_back(node);
-                 // cout << node.name <<endl;
+            circles.push_back(circle);
         }
 
     }
 
-    void readAttrs(string line){
-      vector<string> strings =  str.devide(line," ");
+    Circle readAttrs(string line,Circle circle){
+        //Circle circle;
+        int  start = str.charPos("<",line);
+        int  end = str.charPos(">",line);
+        int space = str.charPosAfter(start," ",line);
 
-        for( string str:strings){
-           cout<<str<<endl;
+        string attrs = str.sub(space,end-1,line);
+        vector<string> strings =  str.devide(attrs," ");
+
+
+        for( string s:strings){
+
+            vector<string> t = str.devide(s,"=");
+
+            try{
+                string key = t[0];
+                string value = t[1];
+                Item item(key,value);
+
+                circle.attr.push_back(item);
+
+            }catch (exception& e) {
+                _p.stroka(e.what());
+            }
+
+            //   }
         }
-        cout<< "end"<<endl;
+
+       return circle;
 
     }
 
-    bool closeTag(string line){
-
-        if(str.charPos(line,"/") == 1){
-            return true;
-        }
-        return false;
-    }
-
-
-    string tagName(string line){
-        int nStart, nEnd,space;
+    string circleName(string line){
+        int start, end,space;
         string res;
 
-        nStart = str.charPos(line,"<");
-        nEnd = str.charPos(line,">");
-        space = str.charPos(line," ");
+        start = str.charPos(line,"<");
+        space = str.charPosAfter(start," ",line);
 
-        //-1 = нет символа
-        if(space != -1) nEnd = space;
-        res = line.substr(nStart+1,nEnd-nStart-1);
-            return res;
-        }
+        res = str.sub(start,space,line);
+        return res;
+    }
 
-
-        bool isChange(){
-            return false;
-        }
-    };
+    bool isChange(){
+        return false;
+    }
+};
 
 #endif // XML_H

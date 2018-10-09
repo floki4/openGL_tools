@@ -16,7 +16,7 @@ private:
 //світлоотзеркалення
     float light_specular[4]  = { 0.5, 0.5, 0.9, 0.1 };
 
-    float light_position[4]  = { 0.0, 1.0, 0.0, 0.5 };
+    float light_position[4]  = { -.1, -.1, -.1, .9 };
 
 public:
     Light(){}
@@ -28,15 +28,19 @@ public:
 
              glDepthFunc(GL_LESS);
 
-        //    glEnable(GL_LIGHTING);
-           //   glEnable(GL_LIGHT0);
+            glEnable(GL_LIGHTING);
+              glEnable(GL_LIGHT0);
 
-            //    glLightfv(GL_LIGHT0, GL_DIFFUSE,  light_diffuse);
-            //    glLightfv(GL_LIGHT0, GL_AMBIENT,  light_ambient );
-            //    glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular );
-            //    glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-           //     glShadeModel(GL_SMOOTH);
-             //      glDisable(GL_CULL_FACE );
+               // glLightfv(GL_LIGHT0, GL_DIFFUSE,  light_diffuse);
+                glLightfv(GL_LIGHT0, GL_AMBIENT,  light_ambient );
+             //   glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular );
+                glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+                glShadeModel(GL_SMOOTH);
+                   glDisable(GL_CULL_FACE);
+
+                   glColorMaterial(GL_FRONT, GL_DIFFUSE);
+                      glEnable(GL_COLOR_MATERIAL);
+                      glEnable(GL_NORMALIZE);
     }
 };
 

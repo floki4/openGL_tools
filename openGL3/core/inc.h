@@ -10,12 +10,12 @@
 #include <algorithm>
 
 
-#include <core/objexporter.h>
+#include <export/objexporter.h>
+
 #include<core/camera.h>
 #include<core/sprite.h>
 #include<core/light.h>
 #include<core/matrix.h>
-#include<primitives/triangles.h>
 
 #include<sys/xml.h>
 

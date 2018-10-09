@@ -11,26 +11,6 @@ using namespace std;
 
 class Str
 {
-private:
-
-    vector<vec2> getDividers(string line, string chr){
-        vector<vec2> dividers;
-        vec2 dev;
-        dev.x = 0;
-
-        while(dev.x != -1){
-            dev.x= charPosAfter(line,chr,dev.x+1);
-            dev.y= dev.x+chr.length();
-
-            //end line
-            if(dev.x != -1){
-                dividers.push_back(dev);
-            }
-        }
-
-        dividers.push_back(vec2(line.length(),line.length()));
-        return dividers;
-    }
 
 public:
     Str(){}
@@ -42,18 +22,22 @@ public:
     }
 
     string sub(int n,string line){
+        n++;
         return line.substr(n,line.length());
     }
 
-    string sub(int n,int n2,string line){
-        return line.substr(n,line.length()-n2);
+    string sub(int n1,int n2,string line){
+        n1++;
+        n2++;
+        return line.substr(n1,n2-n1);
     }
 
-    int charPos(string line,string chr){
+    int charPos(string chr,string line){
         return static_cast<int>(line.find(chr));
     }
 
-    int charPosAfter(string line,string chr,int num){
+    int charPosAfter(int num,string chr,string line){
+        num++;
         return static_cast<int>(line.find(chr,num));
     }
 
@@ -82,30 +66,30 @@ public:
     }
 
 
-    void print(string txt){
-        cout<<txt<<endl;
-    }
 
-    void print(double n){
-        cout<<to_string(n)<<endl;
-    }
 
-    void print(int n){
-        cout<<to_string(n)<<endl;
-    }
 
-    void print(vec3 vec){
-        cout<<to_string(vec.x)<<" "<<
-              to_string(vec.y)<<" "<<
-              to_string(vec.z)<<" "<<
-              endl;
-    }
+private:
 
-    void print(int kupa[]){
-        for(int i = 0;i<sizeof(kupa);i++){
-            cout<<to_string(kupa[i])<<endl;
+    vector<vec2> getDividers(string line, string chr){
+        vector<vec2> dividers;
+        vec2 dev;
+        dev.x = 0;
+
+        while(dev.x != -1){
+            dev.x= charPosAfter(dev.x,chr,line);
+            dev.y= dev.x+chr.length();
+
+            //end line
+            if(dev.x != -1){
+                dividers.push_back(dev);
+            }
         }
+
+        dividers.push_back(vec2(line.length(),line.length()));
+        return dividers;
     }
+
 
 
 };

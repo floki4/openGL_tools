@@ -23,7 +23,6 @@ HEADERS += \
     core/camera.h \
     sys/xml.h \
     sys/str.h \
-    sys/xml/node.h \
     sys/fileworker.h \
     primitives/point.h \
     primitives/peretvorenia.h \
@@ -32,14 +31,10 @@ HEADERS += \
     core/matrix.h \
     export/objexporter.h \
     export/fbxexporter.h \
-    core/aobject.h
+    core/aobject.h \
+    sys/print.h \
+    sys/xml/circle.h \
+    primitives/item.h
 
 
 DISTFILES +=
-
-unix:!macx: LIBS += -L$$PWD/../../../../../../usr/lib/i386-linux-gnu/fbx/ -lfbxsdk
-
-INCLUDEPATH += $$PWD/../../../../../../usr/include/i386-linux-gnu/fbx
-DEPENDPATH += $$PWD/../../../../../../usr/include/i386-linux-gnu/fbx
-
-unix:!macx: PRE_TARGETDEPS += $$PWD/../../../../../../usr/lib/i386-linux-gnu/fbx/libfbxsdk.so

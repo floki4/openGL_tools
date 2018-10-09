@@ -1,7 +1,6 @@
 #ifndef FILEWORKER_H
 #define FILEWORKER_H
 
-#include <string>
 #include <fstream>
 
 class FileWorker
@@ -13,19 +12,19 @@ public:
 
   //  typedef string (*ptr_func)(string);
 
-    void read(string path){
+    vector<string> read(string path){
         string line;
+        vector<string> stroku;
            ifstream myfile (path);
         if (myfile.is_open()) {
             while ( getline(myfile,line) ) {
-                 processing(line);
+                    stroku.push_back(line);
             }
             myfile.close();
+            return stroku;
         }
         else cout << "Unable to open file "<<path<<endl;
     }
-
-virtual void processing(string line){}
 };
 
 #endif // FILEWORKER_H

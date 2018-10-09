@@ -15,7 +15,7 @@ private:
 
      /*   glMatrixMode(GL_PROJECTION);
         glLoadIdentity();
-        gluOrtho2D(0, w, 0, h);
+
 
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();*/
@@ -30,6 +30,7 @@ public:
         glutInitDisplayMode (GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH);
      //   glutInitDisplayMode (GLUT_SINGLE|GLUT_RGBA);
         glutInitWindowPosition(0,0);
+          glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
        // gluPerspective(54.0, w/h, -1.0, 1000.0);
         //зададим размеры координатной сетки

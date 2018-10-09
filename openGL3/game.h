@@ -3,8 +3,6 @@
 
 #include<core/inc.h>
 
-#include<export/fbxexporter.h>
-
 class Game
 {
 private:
@@ -12,9 +10,7 @@ private:
     Light light;
     ObjExporter obj;
 
-    FBXExporter fbx;
-
-   // Xml xml;
+    Xml xml;
 
     Image img;
 
@@ -23,19 +19,17 @@ private:
 public:
     Game(){}
 
-
     void init(){
-         obj.read("models/proba.obj");
+      //   xml.read("file/1.xml");
+        obj.read("model/cube.obj");
 
         camera.size(640,480);
 
 glEnable(GL_ALPHA_TEST);
  glEnable(GL_DEPTH_TEST);
+ glDepthFunc(GL_LEQUAL);
 
  light.init();
-
- fbx.load("models/flacon.fbx");
-
     }
 
      void idle(){
@@ -43,30 +37,31 @@ glEnable(GL_ALPHA_TEST);
      }
 
        void render(){
-   //     glClearColor(0.8, 1.0, 0.6, 1.0);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glMatrixMode(GL_MODELVIEW);
 
-        //glMatrixMode(GL_MODELVIEW);
-
-//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-glPointSize(4);
-glLineWidth(1);
+glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+//glPointSize(4);
+//glLineWidth(1);
  //glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
 
 camera.show(0,0);
 
   //camera.eye.x=0.3;
+ //glTranslatef(0.0f,0.0f,-1.0f);
 
 Matrix matrix;
 matrix.start();
-matrix.rotate(0,0,0);
-matrix.scale(0.3);
+matrix.rotate(0,90,0);
+matrix.scale(0.5);
 //matrix.move(-1,-0.5,-1);
+  //glNormal3f(0.0f, 0.0f, 1.0f);
+obj.draw();
 
-//obj.draw();
+
 matrix.end();
-
     }
+
+
 
 
 
